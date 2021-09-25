@@ -1,0 +1,43 @@
+'Stella Connect Request API
+'Usage: Change the API key
+'Install: https://github.com/VBA-tools/VBA-JSON
+'Include a reference to "Microsoft Scripting Runtime
+
+Public Sub httpRequest()
+
+Dim rng As Range, myitem As New Dictionary, subitem As New Dictionary, cell As Variant
+Set rng = Range("A2:A3")
+'set range value
+
+Dim Obj As New Dictionary
+Dim objHTTP As Object
+Dim Json As String
+
+For Each cell In rng
+subitem("name") = cell.Value
+subitem("email") = cell.Offset(0, 1).Value
+myitem.Add "customer", subitem
+Set subitem = Nothing
+myitem("ext_interaction_id") = cell.Offset(0, 2).Value
+subitem("email") = cell.Offset(0, 3).Value
+myitem.Add "employee", subitem
+myitem("channel") = cell.Offset(0, 4).Value
+Json = ConvertToJson(myitem)
+
+Set objHTTP = CreateObject("MSXML2.serverXMLHTTP")
+Url = ""
+objHTTP.Open "POST", Url, False
+
+objHTTP.setRequestHeader "Content-type", "applicaton/json"
+objHTTP.setRequestHeader "Accept", "application/json"
+objHTTP.setRequestHeader "x-api-key", "YOUR API KEY HERE"
+objHTTP.send (Json)
+result = objHTTP.responseText
+
+Set objHTTP = Nothing
+Set myitem = Nothing
+Set subitem = Nothing
+
+Next
+
+End Sub
