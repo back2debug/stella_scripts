@@ -55,8 +55,8 @@ session.auth= (USER, PWD)
 session.headers = HEADERS
 
 
-UPDATE_TKT_URL = 'https://stellaservice.zendesk.com/api/v2/tickets/'
-CREATE_TKT_URL = 'https://stellaservice.zendesk.com/api/v2/tickets.json'
+UPDATE_TKT_URL = 'https://your-subdomain.zendesk.com/api/v2/tickets/'
+CREATE_TKT_URL = 'https://your-subdomain.zendesk.com/api/v2/tickets.json'
 
 #create service recovery variables
 SUBJECT = 'Service Recovery'
@@ -74,7 +74,7 @@ for feedback in response_data['responses']:
         comments = feedback['comments']
         tkt_id = feedback['ext_interaction_id']
         url =  UPDATE_TKT_URL + tkt_id + '.json'
-        data = {'ticket': {'custom_fields': [{'id': 114098722811, 'value': star_rating}, {'id': 114098722791, 'value': comments}]}}
+        data = {'ticket': {'custom_fields': [{'id': YOUR_STAR_RATING_FIELD_ID, 'value': star_rating}, {'id': YOUR_COMMENTS_FIELD_ID, 'value': comments}]}}
         payload = json.dumps(data)
         response = session.put(url, data=payload)
         # Check response
@@ -87,7 +87,7 @@ for feedback in response_data['responses']:
         if star_rating in BAD_RATING:
             initial_request_id = feedback['request_id']
             tkt_body = 'Ticket #{} received a star rating of {} with these comments: {}'.format(tkt_id, star_rating, comments)
-            data = {'ticket': {'subject': SUBJECT, 'comment': {'body': tkt_body} , 'custom_fields': [{'id': 114101265792, 'value': initial_request_id}]}}
+            data = {'ticket': {'subject': SUBJECT, 'comment': {'body': tkt_body} , 'custom_fields': [{'id': YOUR_REQUEST_ID_FIELD_ID, 'value': initial_request_id}]}}
             payload = json.dumps(data)
             response = session.post(CREATE_TKT_URL, data=payload)
             #check response

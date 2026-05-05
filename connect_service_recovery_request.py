@@ -9,7 +9,7 @@ import http.client
 
 conn = http.client.HTTPSConnection("api.somedomain.net")
 
-payload = "{\"do_not_send\":false,\"tags\":[\"compensation provided\"],\"employee\":{\"email\":\"email address\"},\"initial_feedback_request_id\":\"a1356f7a-11d4-4b7d-bf80-56ca7a674997\",\"ext_interaction_id\":\"646\",\"external_url\":\"https://blancapeak.your-source-system.com/cases/64664523\"}"
+payload = "{\"do_not_send\":false,\"tags\":[\"compensation provided\"],\"employee\":{\"email\":\"email address\"},\"initial_feedback_request_id\":\"your-initial-request-id\",\"ext_interaction_id\":\"your-ext-interaction-id\",\"external_url\":\"https://your-crm.your-source-system.com/cases/your-case-id\"}"
 
 headers = {
     'accept': "application/json",

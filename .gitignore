@@ -1,0 +1,21 @@
+# Data files - may contain customer PII
+*.csv
+*.xlsx
+*.xls
+
+# Environment / secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
