@@ -1,3 +1,5 @@
+Archive Notice: This repository contains legacy scripts from 2017-2018. The company was acquired. These scripts are preserved for reference and educational purposes.
+
 # Stella Connect Integration Scripts
 
 Example scripts for integrating with the Stella Connect API across multiple languages. Covers the two main APIs: **Requests** (submitting feedback requests) and **Data Return** (retrieving response data). The company has since been acquired by UKG.
